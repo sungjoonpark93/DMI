@@ -1,6 +1,7 @@
 __author__ = 'SungJoonPark'
 import pandas as pd
 import networkx as nx
+import os
 
 def read_graph(network_file=None,network_type='directed'):
     #to cover directed, and undirected graph we use directed graph.
@@ -60,8 +61,11 @@ def get_subgraph(G, geneset_list,thr=100):
 
 
 def output_subgraph_to_file(SG_dict,outputfolder=None):
+    if not os.path.exists(outputfolder):
+        os.makedirs(outputfolder)
     for cluster_id in SG_dict.keys():
         outputfile = outputfolder+"subgraph_"+str(cluster_id)+".txt"
+
 
         w = open(outputfile,'w')
         edge_list = SG_dict[cluster_id]
@@ -72,12 +76,12 @@ def output_subgraph_to_file(SG_dict,outputfolder=None):
 
 
 if __name__ =='__main__':
-    network_file = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/6_homology_anonym_v2.txt"
-    geneset_file = "Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/1_6_homology_modified.gmt"
+    network_file = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1\high_degree_node_removed/1_top300_nodes_removed_network.txt"
+    geneset_file = "Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/1_top300_nodes_removed_network.gmt"
     G=read_graph(network_file,network_type='directed')
-    geneset_list = read_genesefile(geneset_file,input_format='txt')
+    geneset_list = read_genesefile(geneset_file,input_format='gmt')
     SG_dict = get_subgraph(G,geneset_list, thr=100)
-    output_subgraph_to_file(SG_dict,outputfolder="Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data\postprocessed/reconstruct/6_homology_modified/")
+    output_subgraph_to_file(SG_dict,outputfolder="Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data\postprocessed/reconstruct/1_top300_nodes_removed_network/")
 
 
 
