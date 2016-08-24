@@ -72,12 +72,12 @@ def output_subgraph_to_file(SG_dict,outputfolder=None):
 
 
 if __name__ =='__main__':
-    network_file = "Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge1/1_ppi_anonym_v2.txt"
-    geneset_file = "Q:/DreamChallenge-Disease Module Identification/Tools/COSSY/data/1_1_ppi.gmt"
+    network_file = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/6_homology_anonym_v2.txt"
+    geneset_file = "Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/1_6_homology_modified.gmt"
     G=read_graph(network_file,network_type='directed')
-    geneset_list = read_genesefile(geneset_file,input_format='gmt')
+    geneset_list = read_genesefile(geneset_file,input_format='txt')
     SG_dict = get_subgraph(G,geneset_list, thr=100)
-    output_subgraph_to_file(SG_dict,outputfolder="./")
+    output_subgraph_to_file(SG_dict,outputfolder="Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data\postprocessed/reconstruct/6_homology_modified/")
 
 
 
