@@ -2,6 +2,7 @@ __author__ = 'SungJoonPark'
 import pandas as pd
 import networkx as nx
 import os
+import base
 
 def read_graph(network_file=None,network_type='directed'):
     #to cover directed, and undirected graph we use directed graph.
@@ -15,20 +16,6 @@ def read_graph(network_file=None,network_type='directed'):
     G.add_weighted_edges_from(edge_list)
 
     return G
-
-
-def read_genesefile(genesetfile=None,input_format="txt"):
-    geneset_list = []
-    with open(genesetfile,'r') as r:
-        for line in r:
-            if input_format =='txt':
-                #Node label should be string not integer even is integer!
-                geneset_list.append(line.strip().split("\t"))
-            elif input_format =='gmt':
-                #Node label should be string not integer even is integer!
-                geneset_list.append(line.strip().split("\t")[2:])
-    geneset_list = [gene_list for gene_list in geneset_list]
-    return geneset_list
 
 
 def get_induced_subgraph(G, geneset_list):
@@ -79,7 +66,7 @@ if __name__ =='__main__':
     network_file = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1\high_degree_node_removed/1_top300_nodes_removed_network.txt"
     geneset_file = "Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/1_top300_nodes_removed_network.gmt"
     G=read_graph(network_file,network_type='directed')
-    geneset_list = read_genesefile(geneset_file,input_format='gmt')
+    geneset_list = base.read_genesetfile(geneset_file,input_format='gmt')
     SG_dict = get_subgraph(G,geneset_list, thr=100)
     output_subgraph_to_file(SG_dict,outputfolder="Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data\postprocessed/reconstruct/1_top300_nodes_removed_network/")
 
