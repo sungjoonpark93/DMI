@@ -73,12 +73,12 @@ def ChallengeDataFormatToCossyInput_2(filename, output_folder_path,output_name):
 if __name__ =='__main__':
 
 
-    # ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/2_ppi_anonym_v2.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/","2_ppi_anonym_v2")
-    # ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/3_signal_anonym_directed_v3.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/","3_signal_anonym_directed_v3")
-    # ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/4_coexpr_anonym_v2.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/","4_coexpr_anonym_v2")
-    # ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/5_cancer_anonym_v2.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/","5_cancer_anonym_v2")
-    # ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/6_homology_anonym_v2.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/","6_homology_anonym_v2")
-    #reconstructedNetorktoCossyinput("F:/PycharmProject/DMI/subgraph_1.txt","./","1_1_1")
     #ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/6_homology_anonym_v2.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/", "1_6_homology_modified")
     #ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/6_homology_anonym_v2.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/", "1_6_homology_modified")
-    ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1\selected_node_removed\subchallenge1/1_ppi_6934_removed_network.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/","1_ppi_6934_removed_network")
+    #ChallengeDataFormatToCossyInput_2("Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1\selected_node_removed\subchallenge1/1_ppi_6934_removed_network.txt","Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/","1_ppi_6934_removed_network")
+    k_list = [10,30,50,70,90,95,99]
+    for k in k_list:
+        inputfilename = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1\edge_filtering/1_ppi_anonym_v2/1_ppi_anonym_v2_low_"+str(k)+"percent_edge_removed.txt"
+        outputfilename = "1_ppi_anonym_v2_low_"+str(k)+"percent_edge_removed.txt"
+        print inputfilename, outputfilename
+        ChallengeDataFormatToCossyInput_2(inputfilename,"Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/networks/", outputfilename)

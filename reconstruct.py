@@ -63,12 +63,12 @@ def output_subgraph_to_file(SG_dict,outputfolder=None):
 
 
 if __name__ =='__main__':
-    network_file = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1\high_degree_node_removed/1_top300_nodes_removed_network.txt"
-    geneset_file = "Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/1_top300_nodes_removed_network.gmt"
+    network_file = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1\selected_node_removed\subchallenge1/1_ppi_6934_removed_network.txt"
+    geneset_file = "Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/1_ppi_6934_removed_network.gmt"
     G=read_graph(network_file,network_type='directed')
     geneset_list = base.read_genesetfile(geneset_file,input_format='gmt')
     SG_dict = get_subgraph(G,geneset_list, thr=100)
-    output_subgraph_to_file(SG_dict,outputfolder="Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data\postprocessed/reconstruct/1_top300_nodes_removed_network/")
+    output_subgraph_to_file(SG_dict,outputfolder="Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data\postprocessed/reconstruct/1_ppi_6934_removed_network/")
 
 
 
