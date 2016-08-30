@@ -88,32 +88,48 @@ def merge_separated_cluster(_geneset, geneset_sep):
     geneset.extend(geneset_sep)
     return geneset
 
-def export_merged_geneset(geneset, n_name, gs_name, dir="./"):
-    f = open(dir + gs_name + '_gt100_separated.gmt', 'w')
+def export_merged_geneset(geneset, network_name, geneset_file):
+    f = open(geneset_file + '_gt100_separated.gmt', 'w')
     for i, glist in enumerate(geneset):
-        f.write(str(i+1) + '\t' + n_name + '\t' + '\t'.join(glist) + '\n')
+        f.write(str(i+1) + '\t' + network_name + '\t' + '\t'.join(glist) + '\n')
     f.close()
+
+def run(network_file, network_name, geneset_file, geneset_fmt):
+    G = read_graph(network_file, network_type='undirected')
+    geneset_list = read_genesetfile(geneset_file, input_format=geneset_fmt)
+
+    geneset_hub, geneset = separate_geneset_hub_or_not(G, geneset_list)
+    for sub_geneset in geneset_hub:
+        geneset = merge_separated_cluster(geneset, cutoff_hub_cluster(G, sub_geneset))
+
+    geneset_gt100, geneset = separate_geneset_gt100_or_not(geneset)
+    for sub_geneset in geneset_gt100:
+        geneset = merge_separated_cluster(geneset, separate_gt100_cluster(G, sub_geneset))
+
+    export_merged_geneset(geneset, network_name, geneset_file)
 
 if __name__ =='__main__':
     network_list = []
-    network_list.append(['1_ppi_anonym_v2', '1_ppi_6934_removed_network'])
-    # network_list.append('2_ppi_anonym_v2')
-    # network_list.append('3_signal_anonym_directed_v3')
-    # network_list.append('4_coexpr_anonym_v2')
-    # network_list.append('5_cancer_anonym_v2')
-    # network_list.append('6_homology_anonym_v2')
+    network_list.append(['1_ppi_anonym_aligned_v2', 'Q:\DreamChallenge-Disease Module Identification\Tools\SPICi\SPICi\output\subchallenge2\conf_avg_10_0.5.txt_2node_removed.gmt'])
+    # network_list.append(['1_ppi_anonym_v2', 'postprocessed/1_ppi_6934_removed_network_6934_reassigned_2node_removed'])
+    # network_list.append(['2_ppi_anonym_v2', 'postprocessed/2_ppi_anonym_v2_2node_removed'])
+    # network_list.append(['3_signal_anonym_directed_v3', 'postprocessed/3_signal_anonym_directed_v3_2node_removed'])
+    # network_list.append(['4_coexpr_anonym_v2', 'postprocessed/4_coexpr_anonym_v2_2node_removed'])
+    # network_list.append(['5_cancer_anonym_v2', 'postprocessed/5_cancer_anonym_v2_2node_removed'])
+    # network_list.append(['6_homology_anonym_v2', 'postprocessed/6_homology_anonym_v2_2node_removed'])
     for network_name, geneset_name in network_list:
-        network_file = "Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge1/" + network_name + ".txt"
-        geneset_file = "Q:/DreamChallenge-Disease Module Identification/Tools/COSSY/data/" + geneset_name + ".gmt"
+        network_file = "Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge2/" + network_name + ".txt"
+        #geneset_file = "Q:/DreamChallenge-Disease Module Identification/Tools/COSSY/data/" + geneset_name + ".gmt"
+        geneset_file = geneset_name
         G=read_graph(network_file,network_type='undirected')
         geneset_list = read_genesetfile(geneset_file,input_format='gmt')
-        print len(geneset_list)
+
         geneset_hub, geneset = separate_geneset_hub_or_not(G, geneset_list)
-        print len(geneset_hub), len(geneset)
         for sub_geneset in geneset_hub:
             geneset = merge_separated_cluster(geneset, cutoff_hub_cluster(G, sub_geneset))
+
         geneset_gt100, geneset = separate_geneset_gt100_or_not(geneset)
-        print len(geneset_gt100), len(geneset)
         for sub_geneset in geneset_gt100:
             geneset = merge_separated_cluster(geneset, separate_gt100_cluster(G, sub_geneset))
+
         export_merged_geneset(geneset, network_name, geneset_name, dir="Q:/DreamChallenge-Disease Module Identification/Tools/COSSY/data/")
