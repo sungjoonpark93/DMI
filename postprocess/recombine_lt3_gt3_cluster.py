@@ -3,6 +3,7 @@ __author__ = "WonhoShin"
 import argparse
 import merge_2node_cluster as merge2
 import separate_gt100_cluster as sep100
+import os
 
 net_dict = {
     '1': {
@@ -30,8 +31,8 @@ if __name__ == '__main__':
     parser.add_argument('-i', type=str, help="Input file path(geneset data)")
     parser.add_argument('-fmt', type=str, default='gmt', help="Format of Input file/ gmt(default)/ txt")
 
-    args = parser.parse_args()
-    #args = parser.parse_args(['-sub','2','-net','1','-i','Q:\DreamChallenge-Disease Module Identification\Tools\SPICi\SPICi\output\subchallenge2\conf_avg_10_0.5.txt','-fmt','txt'])
+    #args = parser.parse_args()
+    args = parser.parse_args(['-sub','1','-net','6','-i','Q:\DreamChallenge-Disease Module Identification\Tools\MLR-MCL\mlrmcl1.2\output\subchallenge1\leaderboard_round1_3rd_submission\\6_homology_anonym_v2_reindex_b_1_c_10405_i_2_recovered.gmt','-fmt','gmt'])
 
     network_file = net_dict[args.sub][args.net]
     geneset_file = args.i
@@ -39,3 +40,5 @@ if __name__ == '__main__':
 
     merge2.run(network_file, 'sub' + args.sub + '_' + args.net, geneset_file, geneset_fmt)
     sep100.run(network_file, 'sub' + args.sub + '_' + args.net, geneset_file + '_2node_removed.gmt', 'gmt')
+    os.remove(geneset_file + '_2node_removed.gmt')
+

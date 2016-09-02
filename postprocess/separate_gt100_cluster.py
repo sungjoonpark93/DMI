@@ -56,6 +56,8 @@ def cutoff_hub_cluster(_G=None, geneset=None):
     G = _G.subgraph(geneset)
     edge_list = G.edges(data=True)
     edge_list = sorted(edge_list, key = lambda x: x[2]['weight'])
+    geneset_list = []
+    _geneset = []
     for e in edge_list:
         _e = None
         if G.degree(e[0]) < G.degree(e[1]):
@@ -63,10 +65,17 @@ def cutoff_hub_cluster(_G=None, geneset=None):
         else:
             _e = e[1]
         if _e in geneset:
+            _geneset.append(_e)
             geneset.remove(_e)
+            if len(_geneset) == 100:
+                geneset_list.append(_geneset)
+                _geneset = []
         if len(geneset) <= 100:
+            if len(_geneset) >= 3:
+                geneset_list.append(_geneset)
+            geneset_list.append(geneset)
             break;
-    return [geneset]
+    return geneset_list
 
 
 
@@ -89,7 +98,7 @@ def merge_separated_cluster(_geneset, geneset_sep):
     return geneset
 
 def export_merged_geneset(geneset, network_name, geneset_file):
-    f = open(geneset_file + '_gt100_separated.gmt', 'w')
+    f = open(geneset_file + '_gt100_separated_' + str(len(geneset)) + '.gmt', 'w')
     for i, glist in enumerate(geneset):
         f.write(str(i+1) + '\t' + network_name + '\t' + '\t'.join(glist) + '\n')
     f.close()

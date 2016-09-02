@@ -37,57 +37,6 @@ def separate_geneset_2node_or_not(geneset_list):
     geneset_gt3 = [x for x in geneset_list if len(x) > 2]
     return geneset_2node, geneset_gt3
 
-def get_freq(geneset_2node, geneset_gt3, G):
-    tp = [[],[],[],[]]
-    tjfak = []
-    for gpair in geneset_2node:
-        g1, g2 = gpair[0], gpair[1]
-        print g1, g2
-        print G.neighbors(g1)
-        print G.neighbors(g2)
-        if len(G.neighbors(g1)) == 1 and len(G.neighbors(g2)) == 1:
-            tp[0].append(gpair)
-            continue
-        min_len = 0x7fffffff
-        for t in geneset_2node:
-            if g1==t[0] and g2==t[1]:
-                continue
-            try:
-                p = nx.shortest_path(G, source=g1, target=t[0])
-            except NetworkXNoPath:
-                continue
-            l = len(p)
-            print l, p
-            if g2 in l:
-                l -= 1
-            if t[1] in l:
-                l -= 1
-            if min_len > l:
-                min_len = l
-        if min_len == 1:
-            tp[1].append(gpair)
-            continue
-        elif min_len < 0x7fffffff:
-            tp[2].append(gpair)
-            continue
-        flag = True
-        for t in geneset_gt3:
-            try:
-                p = nx.shortest_path_length(G, source=g1, target=t[1])
-            except NetworkXNoPath:
-                continue
-            flag = not flag
-            tp[3].append(gpair)
-            break
-        if flag:
-            tjfak.append(gpair)
-
-    print "RESULT"
-    for i in range(4):
-        print tp[i]
-    print tjfak
-
-
 def merge_2node_cluster(geneset_2node, geneset_gt3):
     _geneset = []
     sep_geneset = []
