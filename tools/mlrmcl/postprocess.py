@@ -24,14 +24,14 @@ def MLRMCLoutputfile_to_gmtfile(MLRMCLoutputfile, gmtfile):
 
 if __name__ =='__main__':
 
-    dataset_list = ["1_ppi_anonym_v2","2_ppi_anonym_v2.txt","3_signal_anonym_directed_v3.txt_duplicates_removed.txt","4_coexpr_anonym_v2.txt",
-                    "5_cancer_anonym_v2.txt","6_homology_anonym_v2.txt_normalized_0to1_top_0.150.txt"]
+    dataset_list = ["1_ppi_anonym_v2_b_1_c_17397_i_2.out","2_ppi_anonym_v2_b_1_c_2000_i_2.out","3_signal_anonym_directed_v3.txt_duplicates_removed_b_1_c_5254_i_2.out",
+                    "4_coexpr_anonym_v2_b_1_c_12588_i_2.out","5_cancer_anonym_v2_b_1_c_14679_i_2.out","6_homology_anonym_v2_reindex_b_1_c_10405_i_2.out"]
 
-    input_dir = "Q:\DreamChallenge-Disease Module Identification\Tools\MLR-MCL\mlrmcl1.2\data\subchallenge1\leaderboard_round1_3rd_submission/"
+    input_dir = "Q:\DreamChallenge-Disease Module Identification\Tools\MLR-MCL\mlrmcl1.2\output\subchallenge1\leaderboard_round1_3rd_submission/"
     inputfile_list = map(lambda x : input_dir+x, dataset_list)
 
-    output_dir = "Q:\DreamChallenge-Disease Module Identification\Tools\MLR-MCL\mlrmcl1.2\data\subchallenge1\leaderboard_round1_3rd_submission/"
-    outputfile_list = map(lambda x:output_dir + os.path.splitext(x)[0]+"unweighted_.graph", dataset_list)
+    output_dir = input_dir
+    outputfile_list = map(lambda x:output_dir + os.path.splitext(x)[0]+".gmt", dataset_list)
 
     for i,inputfile in enumerate(inputfile_list):
         print inputfile, outputfile_list[i]

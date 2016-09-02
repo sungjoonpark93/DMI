@@ -79,7 +79,7 @@ def ChallengeData_to_MLRMCLinputfile(chanllengeData,MLRMCLinputfile,type='unweig
 if __name__ =='__main__':
 
     dataset_list = ["1_ppi_anonym_v2.txt","2_ppi_anonym_v2.txt","3_signal_anonym_directed_v3.txt_duplicates_removed.txt","4_coexpr_anonym_v2.txt",
-                    "5_cancer_anonym_v2.txt","6_homology_anonym_v2.txt_normalized_0to1_top_0.150.txt"]
+                    "5_cancer_anonym_v2.txt","6_homology_anonym_v2_reindex.txt"]
 
     input_dir = "Q:\DreamChallenge-Disease Module Identification\ChallengeData/subchallenge1/"
     inputfile_list = map(lambda x : input_dir+x, dataset_list)
