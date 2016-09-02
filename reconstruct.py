@@ -62,20 +62,13 @@ def output_subgraph_to_file(SG_dict,outputfolder=None):
         w.close()
 
 
-if __name__ =='__sjmain__':
-    network_file = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1\high_degree_node_removed/1_top300_nodes_removed_network.txt"
-    geneset_file = "Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data/1_top300_nodes_removed_network.gmt"
+if __name__ =='__main__':
+    network_file = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge1/6_homology_anonym_v2.txt_normalized_0to1_top_0.150.txt"
+    geneset_file = "Q:\DreamChallenge-Disease Module Identification\Tools\SPICi\SPICi\output\leaderboard_round1_sub1_2nd_submission/6_homology_anonym_v2.txt_normalized_0to1_top_0.150_d_0.5_s_3_m_1_.txt"
     G=read_graph(network_file,network_type='directed')
     geneset_list = base.read_genesetfile(geneset_file,input_format='gmt')
     SG_dict = get_subgraph(G,geneset_list, thr=100)
-    output_subgraph_to_file(SG_dict,outputfolder="Q:\DreamChallenge-Disease Module Identification\Tools\COSSY\data\postprocessed/reconstruct/1_top300_nodes_removed_network/")
+    output_subgraph_to_file(SG_dict,outputfolder="Q:\DreamChallenge-Disease Module Identification\Tools\SPICi\SPICi\output\leaderboard_round1_sub1_2nd_submission/reconstruct/6_homo/")
 
-if __name__ =='__main__':
-    network_file = "Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge1/1_ppi_anonym_v2.txt"
-    geneset_file = "Q:/DreamChallenge-Disease Module Identification/Tools/SLCP2HOP\data/output/300_200_100_250_300_200/SLCP2HOP_1_ppi_anonym_v2_result.txt"
-    G=read_graph(network_file,network_type='directed')
-    geneset_list = base.read_genesetfile(geneset_file,input_format='txt')
-    SG_dict = get_subgraph(G,geneset_list, thr=100)
-    output_subgraph_to_file(SG_dict,outputfolder="Q:/DreamChallenge-Disease Module Identification/Tools/SLCP2HOP/data/postprocessed/reconstruct/300_200_100_250_300_200_1_ppi_anonym_v2_result/")
 
 
