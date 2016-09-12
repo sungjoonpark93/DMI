@@ -69,12 +69,15 @@ def cutoff_hub_cluster(_G=None, geneset=None):
             geneset.remove(_e)
             if len(_geneset) == 100:
                 geneset_list.append(_geneset)
+                print len(_geneset)
+                print _geneset
                 _geneset = []
         if len(geneset) <= 100:
             if len(_geneset) >= 3:
                 geneset_list.append(_geneset)
             geneset_list.append(geneset)
-            break;
+            break
+
     return geneset_list
 
 
@@ -82,7 +85,10 @@ def cutoff_hub_cluster(_G=None, geneset=None):
 def separate_gt100_cluster(G=None, geneset=None):
     sep_geneset = []
     k = len(geneset)/100
-    if len(geneset)%100:
+    while True:
+        cluster_size = len(geneset) / k
+        if cluster_size + len(geneset) % cluster_size <= 100:
+            break
         k += 1
     cluster_size = len(geneset) / k
     sep_boundary = [x *( cluster_size) for x in range(k)]

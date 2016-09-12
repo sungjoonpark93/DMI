@@ -15,12 +15,16 @@ net_dict = {
         '6': 'Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge1/6_homology_anonym_v2.txt'
     },
     '2': {
+        '0': 'Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge2\integration/whole_network_conf_keep_highest.txt',
         '1': 'Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge2/1_ppi_anonym_aligned_v2.txt',
         '2': 'Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge2/2_ppi_anonym_aligned_v2.txt',
         '3': 'Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge2/3_signal_anonym_aligned_directed_v3.txt',
         '4': 'Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge2/4_coexpr_anonym_aligned_v2.txt',
         '5': 'Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge2/5_cancer_anonym_aligned_v2.txt',
-        '6': 'Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge2/6_homology_anonym_aligned_v2.txt'
+        '6': 'Q:/DreamChallenge-Disease Module Identification/ChallengeData/subchallenge2/6_homology_anonym_aligned_v2.txt',
+        '1-4': 'Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge2\integration\\1_2_3_4_network_conf_keep_highest.txt',
+        '1-3': 'Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge2\integration\\1_2_3_network_conf_keep_highest.txt',
+        '1-2': 'Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge2\integration\\1_2_network_conf_keep_highest.txt'
     }
 }
 
@@ -32,7 +36,8 @@ if __name__ == '__main__':
     parser.add_argument('-fmt', type=str, default='gmt', help="Format of Input file/ gmt(default)/ txt")
 
     #args = parser.parse_args()
-    args = parser.parse_args(['-sub','1','-net','6','-i','Q:\DreamChallenge-Disease Module Identification\Tools\MLR-MCL\mlrmcl1.2\output\subchallenge1\leaderboard_round1_3rd_submission\\6_homology_anonym_v2_reindex_b_1_c_10405_i_2_recovered.gmt','-fmt','gmt'])
+    args = parser.parse_args(['-sub','1','-net','3','-i','Q:\DreamChallenge-Disease Module Identification\Tools\Concensus_PCA\sub1_leader_round2_submission4\\3_signaling\CONCENSUS_PCA_NCOMPONENTS_15_KMEANS_NCLUSTER_100.gmt','-fmt','gmt'])
+
 
     network_file = net_dict[args.sub][args.net]
     geneset_file = args.i
