@@ -35,8 +35,8 @@ if __name__ == '__main__':
     parser.add_argument('-i', type=str, help="Input file path(geneset data)")
     parser.add_argument('-fmt', type=str, default='gmt', help="Format of Input file/ gmt(default)/ txt")
 
-    #args = parser.parse_args()
-    args = parser.parse_args(['-sub','1','-net','3','-i','Q:\DreamChallenge-Disease Module Identification\Tools\Concensus_PCA\sub1_leader_round2_submission4\\3_signaling\CONCENSUS_PCA_NCOMPONENTS_15_KMEANS_NCLUSTER_100.gmt','-fmt','gmt'])
+    args = parser.parse_args()
+    #args = parser.parse_args(['-sub','2','-net','1-3','-i','Q:\DreamChallenge-Disease Module Identification\Tools\SPICi\SPICi\output\leaderboard_round2_sub2_12th_submission\\1_2_3_topKpercentScalining_keephigest\simmatrix\spici_1_2_3_topKpercentScaling.txt','-fmt','txt'])
 
 
     network_file = net_dict[args.sub][args.net]

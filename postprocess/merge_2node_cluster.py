@@ -33,7 +33,7 @@ def read_genesetfile(genesetfile=None,input_format="txt"):
     return geneset_list
 
 def separate_geneset_2node_or_not(geneset_list):
-    geneset_2node = [x for x in geneset_list if len(x) == 2]
+    geneset_2node = [x for x in geneset_list if len(x) <= 2]
     geneset_gt3 = [x for x in geneset_list if len(x) > 2]
     return geneset_2node, geneset_gt3
 

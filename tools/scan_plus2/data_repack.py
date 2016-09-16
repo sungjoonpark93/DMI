@@ -1,6 +1,6 @@
 __author__ = "WonhoShin"
 
-rootdir = "Q:\DreamChallenge-Disease Module Identification\Tools\SCAN_PLUS2\data\\"
+rootdir = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge2\integration\dropout\keeptop_0.5_ratio_0.2\\"
 #rootdir = "Q:\DreamChallenge-Disease Module Identification\ChallengeData\subchallenge2\\"
 
 network_list = [
@@ -12,11 +12,13 @@ network_list = [
     # "4_coexpr_anonym_v2.txt",
     # "5_cancer_anonym_v2.txt",
     # "6_homology_anonym_v2.txt"
-    "subchallenge2/1_2_3_network_conf_keep_highest.txt"
+    #"subchallenge2/1_2_3_network_conf_keep_highest.txt"
 ]
 
-#for i in range(200):
-#    network_list.append("2_ppi_anonym_v2_uniform_drop50.0percent_" + str(i) + ".txt")
+for i in range(200):
+    network_list.append("1_2_3_topKpercentScalining_network_conf_keep_hightest.txt_" + str(i) + ".txt")
+    #network_list.append("5_cancer_anonym_v2.txt_" + str(i) + ".txt")
+    #network_list.append("6_homology_anonym_v2.txt_" + str(i) + ".txt")
 
 for fname in network_list:
     f = open(rootdir + fname, "r")
